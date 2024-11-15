@@ -1,12 +1,13 @@
-# Utiliser l'image officielle de Mosquitto
+# Dockerfile
+
+# Utiliser l'image Mosquitto officielle comme base
 FROM eclipse-mosquitto:latest
 
-# Copier votre fichier de configuration Mosquitto dans l'image
+# Copier votre fichier mosquitto.conf dans le conteneur
 COPY mosquitto.conf /mosquitto/config/mosquitto.conf
 
-# Exposer le port MQTT (1883) et WebSocket (9001)
-EXPOSE 1883
-EXPOSE 9001
+# Exposer les ports nécessaires
+EXPOSE 1883 9001
 
-# Lancer Mosquitto avec votre fichier de configuration
-CMD ["mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
+# Exécution du broker Mosquitto
+CMD ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
