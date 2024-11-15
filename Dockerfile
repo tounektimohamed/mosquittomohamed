@@ -1,13 +1,8 @@
-# Dockerfile
+# Utilisation de la dernière version de Mosquitto
+FROM eclipse-mosquitto:2.0.20
 
-# Utiliser l'image Mosquitto officielle comme base
-FROM eclipse-mosquitto:latest
-
-# Copier le fichier de configuration
+# Copie du fichier de configuration mosquitto.conf dans le conteneur
 COPY mosquitto.conf /mosquitto/config/mosquitto.conf
 
-# Exposer explicitement le port utilisé dans la configuration
+# Port utilisé par Mosquitto
 EXPOSE 1883
-
-# Commande pour démarrer Mosquitto avec le fichier de configuration
-CMD ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
