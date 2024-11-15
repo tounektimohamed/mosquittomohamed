@@ -1,12 +1,12 @@
-# Utiliser une image officielle de Mosquitto comme base
+# Utiliser l'image officielle de Mosquitto
 FROM eclipse-mosquitto:latest
 
-# Exposer le port 1883 pour les communications MQTT
+# Copier votre fichier de configuration Mosquitto dans l'image
+COPY mosquitto.conf /mosquitto/config/mosquitto.conf
+
+# Exposer le port MQTT (1883) et WebSocket (9001)
 EXPOSE 1883
+EXPOSE 9001
 
-
-# Copier le fichier de configuration personnalisé si nécessaire
-# COPY mosquitto.conf /mosquitto/config/mosquitto.conf
-
-# Commande pour démarrer Mosquitto
+# Lancer Mosquitto avec votre fichier de configuration
 CMD ["mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
