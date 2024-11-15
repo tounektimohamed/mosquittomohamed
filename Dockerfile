@@ -3,11 +3,11 @@
 # Utiliser l'image Mosquitto officielle comme base
 FROM eclipse-mosquitto:latest
 
-# Copier votre fichier mosquitto.conf dans le conteneur
+# Copier le fichier de configuration
 COPY mosquitto.conf /mosquitto/config/mosquitto.conf
 
-# Exposer les ports nécessaires
-EXPOSE 1883 9001
+# Exposer explicitement le port utilisé dans la configuration
+EXPOSE 1883
 
-# Exécution du broker Mosquitto
+# Commande pour démarrer Mosquitto avec le fichier de configuration
 CMD ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
